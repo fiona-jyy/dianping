@@ -1,0 +1,10 @@
+<view class='restaurant-list'>
+  <view wx:for="{{restaurants}}" wx:for-item="restaurant">
+    <view class="rest-name"
+      bindtap="onClick" data-id="{{restaurant.id}}"
+    >{{restaurant.name}}</view>
+
+    <view class="rest-desc">{{restaurant.description}}</view>
+  </view>
+</view> 
+

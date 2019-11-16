@@ -1,0 +1,20 @@
+<view>
+  <view>{{restaurant.name}}</view>
+  <view>{{restaurant.description}}</view>
+
+  <view>餐厅评论</view>
+  <view wx:for="{{reviews}}" wx:for-item="review">
+   <text>{{review.content}}</text>
+  </view>
+
+  <view class="add-review">添加评论</view>
+  <form bindsubmit="onSubmitReview">
+    <input name="content" placeholder="请输入评论内容"></input>
+    <picker mode="selector" range="{{ratingValues}}"
+      bindchange="onChangeRating">
+    评分{{rating}}
+    </picker>
+    <button form-type="submit">提交评论</button>
+  </form>
+  
+</view>

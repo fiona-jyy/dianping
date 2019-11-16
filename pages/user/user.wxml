@@ -1,0 +1,32 @@
+<view wx:if="{{currentUser}}">
+<text>{{currentUser._username}}</text>
+<button bindtap="onLogout">登出</button>
+</view>
+
+<view wx:else>
+
+  <view wx:if="{{ state == 'register'}}">
+    <view>新用户注册</view>
+    <form bindsubmit="onRegister">
+      <view>用户名</view>
+      <input name="username" placeholder="请输入用户名"></input>
+      <view>密码</view>
+      <input name="password" type="password"></input>
+      <button formType="submit">注册</button>
+      <view bindtap="changeState">已经注册？去登入</view>
+    </form>
+  </view>
+
+  <view wx:if="{{state == 'login'}}">
+    <view>请输入用户名和密码登入</view>
+    <form bindsubmit="onLogin">
+      <view>用户名</view>
+      <input name="username" placeholder="请输入用户名"></input>
+      <view>密码</view>
+      <input name="password" type="password"></input>
+      <button formType="submit">登入</button> 
+      <view bindtap="changeState">新用户？去注册</view>
+    </form>
+  </view>
+
+</view>

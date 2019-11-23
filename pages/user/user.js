@@ -55,6 +55,22 @@ Page({
       })
     })
   },
+  userInfoHandler:function(data){
+    console.log(data)
+    // data 是加密过的微信账号信息
+    let page = this
+    wx.BaaS.auth.loginWithWechat(data).then(function(res){
+      page.setData({
+        currentUser:res
+      })
+    }).catch(function(err){
+      wx.showModal({
+        title: '登录失败',
+        content: err.message,
+      })
+    })
+  },
+
   onLogout:function(){
     wx.BaaS.auth.logout()
     this.setData({
@@ -66,6 +82,7 @@ Page({
     let page = this
     wx.BaaS.auth.getCurrentUser().then(function(res){
       //设置用户
+      console.log(12345, res.toJSON())
       page.setData({
         currentUser:res
       })

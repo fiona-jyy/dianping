@@ -4,7 +4,9 @@
     "pages/logs/logs",
     "pages/user/user",
     "pages/show/show",
-    "pages/menu/menu"
+    "pages/menu/menu",
+    "pages/order/order",
+    "pages/products/products"
   ],
   "tabBar": {
     "list": [
@@ -13,6 +15,11 @@
         "text": "Home"
       },
       {
+        "pagePath": "pages/products/products",
+        "text": "Products"
+      },
+      {
+
         "pagePath": "pages/user/user",
         "text": "Account"
       }

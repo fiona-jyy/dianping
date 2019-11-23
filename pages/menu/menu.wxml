@@ -6,9 +6,18 @@
  <view class='meals-list'>
   <view wx:for="{{meals}}" wx:for-item="meal" data-id="{{ meal.id }}">
     <view class="meals-name">{{meal.name}}</view>
-    <image class="meals-photo" src="{{meal.photo.path}}" style="width:100px；height:100px;"></image>
-    <view class="meals-price">¥{{meal.price}}</view>
-    <button bindtap="onSubmitOrder" data-id="{{meal.id}}">下单</button>
+    <image class="meals-photo" src="{{meal.photo.path}}" 
+      mode="aspectFill"></image>
+
+    <view wx:if="{{meal.price >0}}">
+      <view>¥{{meal.price}}</view>
+      <view>购买可得积分{{meal.points}}</view>
+    </view>
+    <view wx:else>
+      <view>{{-meal.points}} 积分兑换</view>
+    </view>
+   
+    <button bindtap="onSubmitOrder" data-id="{{meal.id}}"data-points="{{meal.points}}">下单</button>
           
   </view>
 </view> 

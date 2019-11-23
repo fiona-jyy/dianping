@@ -1,0 +1,16 @@
+<view class="products">
+  <view wx:for="{{products}}" wx:for-item="item">
+      <view class="product-name" data-id="{{item.id}}">{{item.name}}</view>
+      <image src="{{item.photo.path}}"></image>
+      <view class="product-price">¥{{item.price}}</view>
+      <view class="action">
+        <button data-id="{{item.id}}" bindtap="onAdd">+</button>
+        <view class="quantity">{{item.quantity || 0}}</view>
+        <button data-id="{{item.id}}" bindtap="onMinus">-</button>
+      </view>
+  </view>
+
+  <view class="summary">
+    总价：¥{{totalPrice}}
+  </view>
+</view>

@@ -34,18 +34,41 @@ Page({
 
   onSubmitOrder: function (event) {
     console.log(event)
+    let currentUser = this.data.currentUser
     let mealId = event.currentTarget.dataset.id
+    let points = event.currentTarget.dataset.points
+    let currentPoints = currentUser.get('points')
+    let newPoints = currentPoints + points
     let Order = new wx.BaaS.TableObject('orders')
     let order = Order.create()
+
+    if (points<0 && newPoints <0){
+      wx.showModal({
+        title:'积分不足',
+        content:'积分不足'
+      })
+      return
+    }
+
     order.set({
-      user_id: this.data.currentUser.id.toString(),
+      user_id: currentUser.id.toString(),
       meal_id: mealId,
       quantity: 1
     })
     order.save().then(function (res) {
-      wx.showModal({
-        title: '订单创建成功',
-        content: '请前往个人中心查看'
+      currentUser.set('points', newPoints)
+      currentUser.update().then(function(){
+        wx.showModal({
+          title: '订单创建成功',
+          content: '请前往个人中心查看',
+          success(res){
+            if(res.confirm){
+              wx.navigateTo({
+                url:'/pages/order/order',
+              })
+            }
+          }
+         })
       })
     }).catch(function (err) {
       wx.showModal({

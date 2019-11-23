@@ -1,0 +1,9 @@
+<!--pages/order/order.wxml-->
+<view wx:for="{{orders}}" wx:for-item="order">
+  <view class="order">
+    <image src="{{order.meal_id.photo.path}}"></image>
+    <view>{{order.meal_id.name}}</view>
+    <view class="price">¥{{order.meal_id.price}}</view>
+  </view>
+
+</view>
